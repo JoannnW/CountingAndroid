@@ -50,7 +50,13 @@ public class Main extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-//connecting properties with functions on the display
+
+        try {
+            loadCommonWords();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //connecting properties with functions on the display
         fileName = findViewById(R.id.textInputEditText);
         getWordCountButton = findViewById(R.id.buttonGetWordCount);
         getUniqueWordsButton = findViewById(R.id.getUniqueWordsButton);
@@ -62,12 +68,6 @@ public class Main extends AppCompatActivity {
         exportButton = findViewById(R.id.buttonExport);
         readTextFile(fileName);
         removeCommonWords();
-        try {
-            loadCommonWords();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
 
         getWordCountButton.setOnClickListener(new View.OnClickListener() {
             @Override
